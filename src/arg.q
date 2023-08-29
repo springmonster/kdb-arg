@@ -15,17 +15,20 @@
   //q)a~b
   //1b
   // 这里如果不声明x,y,z，那么就是有顺序的？？？
+  // x,y,z是有顺序的
 add:{def,:enlist[y]!enlist(x;z)}
 //add:{def,:enlist[x]!enlist(y;z)}
 //add:{def,:enlist[z]!enlist(x;y)}
 // 很奇怪
-add:{[a;b;c] def,:enlist[a]!enlist(b;c)}
+
+//add:{[a;b;c] def,:enlist[a]!enlist(b;c)}
 
 // 1b指定了x？？？y指定了key，z指定了value？？？
 // 为什么？？？
 req:add[1b;;] / required
 opt:add[0b;;] / optional
 
+// https://code.kx.com/q/basics/syntax/#iterators
 read:{(key d:.Q.opt x){if[not y in x;'y]}/:where def[;0];.Q.def[def[;1];d]}
 
 \
@@ -41,6 +44,7 @@ Usage:
   .arg.opt[`user;enlist""]  / optional -user argument, default to empty string
   .arg.opt[`pass;enlist""]  / optional -pass argument, default to empty string
 
+  // https://code.kx.com/q/ref/dotq/#opt-command-parameters
   q).arg.read .z.x
   host| `localhost
   port| 5000
